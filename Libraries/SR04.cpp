@@ -74,7 +74,3 @@ long SR04::MicrosecondsToCentimeter(long duration) {
     //d = (d == 0)?999:d;
     return d;
 }
-
-
-
-

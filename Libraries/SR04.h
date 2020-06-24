@@ -15,14 +15,14 @@
 #define DEFAULT_PINGS 5
 class SR04 {
 public:
-	
+
 	/**
 	* Constructor
 	* Ultrasonic sensor SR04, four connections pins
 	* VCC, ECHO, TRIGGER, GND
 	* <br>
 	* \param echoPin digital INPUT-Pin for measuring distance
-	* \param triggerPin if 10us high a trigger signal is generated from 
+	* \param triggerPin if 10us high a trigger signal is generated from
 	*					SR04
 	*
 	* \return void
@@ -35,9 +35,9 @@ public:
 	* \return long distance in centimeter
 	*/
 	long Distance();
-	
+
 	/**
-	* Do count measurents and calculate the average. 
+	* Do count measurents and calculate the average.
 	* To avoid defilement from ow/high peaks, min/max values
 	* are substracted from the average
 	*
@@ -46,26 +46,26 @@ public:
 	* \return long distance in centimeter
 	**/
 	long DistanceAvg(int wait=DEFAULT_DELAY, int count=DEFAULT_PINGS);
-	
+
 	/**
 	* Do only a ping. Get result with methode getDistance()
-	* 
+	*
 	* \param keine
 	*/
 	void Ping() ;
-	
+
 	/**
 	* return latest distance. Methode Ping() should be called before
 	* \param keine
 	* \return Distanz in Zentimeter
 	*/
 	long getDistance();
-	
+
 
 private:
 	/**
 	* Do the measurement calculation and return result in centimeter
-	* SR04 measure echo time to obstacle and return way. 
+	* SR04 measure echo time to obstacle and return way.
 	* <br>
 	* Sound travels with 340m/sec
 	* <br>
@@ -77,15 +77,12 @@ private:
 	* 2941uS fuer 100cm = 5882 uS fuer 200cm
 	*
 	* duration / 5882 * 100 = distance in cm
-	*/	
+	*/
 	long MicrosecondsToCentimeter(long duration);
-	
+
 	long _currentDistance;
 	int _echoPin, _triggerPin;
 	long _duration, _distance;
 	bool _autoMode;
 };
 #endif
-
-
-

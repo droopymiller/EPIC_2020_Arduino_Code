@@ -11,7 +11,7 @@ the L293D chip
 #define DIRB 4
 
 int i;
- 
+
 void setup() {
     //---set pin direction
     pinMode(ENABLE,OUTPUT);
@@ -56,19 +56,18 @@ void loop() {
     digitalWrite(DIRA,HIGH); //one way
     digitalWrite(DIRB,LOW);
     delay(2000);
-    analogWrite(ENABLE,180); //half speed
+    analogWrite(ENABLE,180); // 70% speed
     delay(2000);
-    analogWrite(ENABLE,128); //half speed
+    analogWrite(ENABLE,128); // 50% speed
     delay(2000);
-    analogWrite(ENABLE,50); //half speed
+    analogWrite(ENABLE,50);  // 20% speed
     delay(2000);
-    analogWrite(ENABLE,128); //half speed
+    analogWrite(ENABLE,128); // 50% speed
     delay(2000);
-    analogWrite(ENABLE,180); //half speed
+    analogWrite(ENABLE,180); // 70% speed
     delay(2000);
-    analogWrite(ENABLE,255); //half speed
+    analogWrite(ENABLE,255); // 100% speed
     delay(2000);
-    digitalWrite(ENABLE,LOW); //all done
+    digitalWrite(ENABLE,LOW); // all done
     delay(10000);
 }
-  
