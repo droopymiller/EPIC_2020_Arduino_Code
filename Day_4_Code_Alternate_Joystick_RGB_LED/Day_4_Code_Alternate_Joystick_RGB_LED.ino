@@ -32,33 +32,30 @@ int a;  //value of x axis joystick
 int b;  //value of y axis joystick
 
 void setup() {
-  pinMode(SW_pin, INPUT);
-  pinMode(RED, OUTPUT);
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
-  digitalWrite(SW_pin, HIGH);
-  digitalWrite(RED, HIGH);
-  digitalWrite(GREEN, LOW);
-  digitalWrite(BLUE, LOW);
-  Serial.begin(9600);
-  
+    pinMode(SW_pin, INPUT_PULLUP);    // Set switch pin to input with internal pullup
+    pinMode(RED, OUTPUT);
+    pinMode(GREEN, OUTPUT);
+    pinMode(BLUE, OUTPUT);
+    digitalWrite(RED, HIGH);
+    digitalWrite(GREEN, LOW);
+    digitalWrite(BLUE, LOW);
+    Serial.begin(9600);               // Initialize serial connection at 9600 baud
 }
 
 void loop() {
-  Serial.print("Switch:  ");
-  Serial.print(digitalRead(SW_pin));
-  Serial.print("\n");
-  Serial.print("X-axis: ");
-  Serial.print(analogRead(X_pin));
-  Serial.print("\n");
-  Serial.print("Y-axis: ");
-  Serial.println(analogRead(Y_pin));
-  Serial.print("\n\n");
-  a=analogRead(X_pin)/4;
-  b=analogRead(Y_pin)/4;
-  analogWrite(RED,(int)((255-(float)a)*(1-((float)b/255))));
-  analogWrite(GREEN,(int)((float)b*(1-((float)a/255))));
-  analogWrite(BLUE,(int)((float)a*(1-((float)b/255))));
-  delay(50);
-  
+    Serial.print("Switch:  ");
+    Serial.print(digitalRead(SW_pin));    // Print switch status
+    Serial.print("\n");
+    Serial.print("X-axis: ");
+    Serial.print(analogRead(X_pin));      // Print x axis value
+    Serial.print("\n");
+    Serial.print("Y-axis: ");
+    Serial.println(analogRead(Y_pin));    // Print y axis value
+    Serial.print("\n\n");
+    a=analogRead(X_pin)/4;                // Divide by 4 to scale 1023 to 255
+    b=analogRead(Y_pin)/4;                // Divide by 4 to scale 1023 to 255
+    analogWrite(RED,(int)((255-(float)a)*(1-((float)b/255))));    // Analog write to RED
+    analogWrite(GREEN,(int)((float)b*(1-((float)a/255))));        // Analog write to GREEN
+    analogWrite(BLUE,(int)((float)a*(1-((float)b/255))));         // Analog write to BLUE
+    delay(50);
 }
