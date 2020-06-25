@@ -100,7 +100,7 @@
 //LED2: Connect to pin 10 to long lead of LED. Connect short end of LED to 200 to 500 ohm resistor to GND;
 //LED3: Connect to pin 11 to long lead of LED. Connect short end of LED to 200 to 500 ohm resistor to GND;
 //LED4: Connect to pin 12 to long lead of LED. Connect short end of LED to 200 to 500 ohm resistor to GND;
-//BUZZER PIN 3 to positive (+) lead of passive buzzer.  The other lead goes to GND
+//BUZZER PIN 8 to positive (+) lead of passive buzzer.  The other lead goes to GND
 
 // Original code supplied by Dr. Derickson
 // Edited and documented by Gerome Cacho
@@ -116,34 +116,34 @@ int noteDurations[] = {8, 8, 4, 4, 4, 2, 8, 8, 4, 4, 4, 2, 8, 8, 4, 4, 4, 4, 4, 
 float tempo = 1.275;    // default is 1.275. Could try .7, .9
 
 void setup() {
-  // Runs once
-  pinMode(9, OUTPUT);   // configures the pins that drive LEDs as outputs
-  pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(12, OUTPUT);
+    // Runs once
+    pinMode(9, OUTPUT);   // configures the pins that drive LEDs as outputs
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
 }
 
 void loop() {
   // Runs forever
     for (int thisNote = 0 ; thisNote < 25 ; thisNote++)     // For 25 times
     {
-      int randomLight1 = random(9, 13);                     // RNG select the pins
-      int randomLight2 = random(9, 13);                     // RNG meaning "Random Number Generator" which is the computer's way to determining randomness
-      int randomLight3 = random(9, 13);
-      int randomLight4 = random(9, 13);
+        int randomLight1 = random(9, 13);                   // RNG select the pins
+        int randomLight2 = random(9, 13);                   // RNG meaning "Random Number Generator" which is the computer's way to determining randomness
+        int randomLight3 = random(9, 13);
+        int randomLight4 = random(9, 13);
 
-      digitalWrite(randomLight1, HIGH);                     // Tell the pins to go high or low
-      digitalWrite(randomLight2, HIGH);
-      digitalWrite(randomLight3, LOW);
-      digitalWrite(randomLight4, LOW);
+        digitalWrite(randomLight1, HIGH);                   // Tell the pins to go high or low
+        digitalWrite(randomLight2, HIGH);
+        digitalWrite(randomLight3, LOW);
+        digitalWrite(randomLight4, LOW);
 
-      int noteDuration = 1130/noteDurations[thisNote];      // Creates duration of the note
-      tone(3, melody[thisNote], noteDuration);              // Sends audio signal to pin 3 aka speaker. Plays thisNote for noteDuration.
+        int noteDuration = 1130/noteDurations[thisNote];    // Creates duration of the note
+        tone(8, melody[thisNote], noteDuration);            // Sends audio signal to pin 8 aka speaker. Plays thisNote for noteDuration.
 
-      int pause = noteDuration * tempo;                     // Calculates a pause to play between notes
-      delay(pause);
+        int pause = noteDuration * tempo;                   // Calculates a pause to play between notes
+        delay(pause);
 
-      noTone(3);                                            // Mutes the audio signal on pin 3
+        noTone(8);                                          // Mutes the audio signal on pin 8
     }
                                                             // After looping 25 times
     digitalWrite(9, HIGH);                                  // Send everything high
