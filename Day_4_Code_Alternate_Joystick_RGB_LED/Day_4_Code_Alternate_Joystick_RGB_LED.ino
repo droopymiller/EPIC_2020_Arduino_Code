@@ -25,9 +25,6 @@ const int Y_pin = A1; // analog pin connected to Y output
 #define RED 6
 
 // Define variables
-int redValue;
-int greenValue;
-int blueValue;
 int a;  //value of x axis joystick
 int b;  //value of y axis joystick
 
