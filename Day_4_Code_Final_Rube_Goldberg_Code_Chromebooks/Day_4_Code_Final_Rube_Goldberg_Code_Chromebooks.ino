@@ -322,7 +322,7 @@ void loop()
         digitalWrite(LED_PIN,LOW);  //turn the led off
         delay(5000);                // Adjust this delay to allow marble to land in boat
         digitalWrite(DIRA,HIGH);    // full speed direction a
-        digitalWrite(DIRB,LOW);    // full speed direction a
+        digitalWrite(DIRB,LOW);     // full speed direction a
         analogWrite(ENABLE,128);    // enable on, Adjustable speed 0-255
     }
     a = sr04.Distance();        // Set a to distance in cm
