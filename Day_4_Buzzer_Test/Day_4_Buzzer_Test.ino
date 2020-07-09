@@ -5,17 +5,15 @@
 // The passive buzzer negative termal should go to GND on the arduino
 // The passive buzzer will play two notes just to verify that everything is working.
 
-#include "pitches.h"
- 
 // notes in the melody:
 int melody[] = {300, 400};
 int duration = 500;  // 500 miliseconds
- 
+
 void setup() {
- 
+
 }
- 
-void loop() {  
+
+void loop() {
     tone(8, melody[1], duration);
     delay(500);
     tone(8, melody[2], duration);
