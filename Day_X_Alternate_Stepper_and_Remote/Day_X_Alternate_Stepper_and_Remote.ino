@@ -717,24 +717,24 @@ public:
 // Pulse parms are *50-100 for the Mark and *50+100 for the space
 // First MARK is the one after the long gap
 // pulse parameters in usec
-#define NEC_HDR_MARK	9000
-#define NEC_HDR_SPACE	4500
-#define NEC_BIT_MARK	560
-#define NEC_ONE_SPACE	1600
-#define NEC_ZERO_SPACE	560
-#define NEC_RPT_SPACE	2250
+#define NEC_HDR_MARK  9000
+#define NEC_HDR_SPACE 4500
+#define NEC_BIT_MARK  560
+#define NEC_ONE_SPACE 1600
+#define NEC_ZERO_SPACE  560
+#define NEC_RPT_SPACE 2250
 
-#define SONY_HDR_MARK	2400
-#define SONY_HDR_SPACE	600
-#define SONY_ONE_MARK	1200
-#define SONY_ZERO_MARK	600
+#define SONY_HDR_MARK 2400
+#define SONY_HDR_SPACE  600
+#define SONY_ONE_MARK 1200
+#define SONY_ZERO_MARK  600
 #define SONY_RPT_LENGTH 45000
 #define SONY_DOUBLE_SPACE_USECS  500  // usually ssee 713 - not using ticks as get number wrapround
 
 // SA 8650B
-#define SANYO_HDR_MARK	3500  // seen range 3500
-#define SANYO_HDR_SPACE	950 //  seen 950
-#define SANYO_ONE_MARK	2400 // seen 2400
+#define SANYO_HDR_MARK  3500  // seen range 3500
+#define SANYO_HDR_SPACE 950 //  seen 950
+#define SANYO_ONE_MARK  2400 // seen 2400
 #define SANYO_ZERO_MARK 700 //  seen 700
 #define SANYO_DOUBLE_SPACE_USECS  800  // usually ssee 713 - not using ticks as get number wrapround
 #define SANYO_RPT_LENGTH 45000
@@ -742,21 +742,21 @@ public:
 // Mitsubishi RM 75501
 // 14200 7 41 7 42 7 42 7 17 7 17 7 18 7 41 7 18 7 17 7 17 7 18 7 41 8 17 7 17 7 18 7 17 7
 
-// #define MITSUBISHI_HDR_MARK	250  // seen range 3500
-#define MITSUBISHI_HDR_SPACE	350 //  7*50+100
-#define MITSUBISHI_ONE_MARK	1950 // 41*50-100
+// #define MITSUBISHI_HDR_MARK  250  // seen range 3500
+#define MITSUBISHI_HDR_SPACE  350 //  7*50+100
+#define MITSUBISHI_ONE_MARK 1950 // 41*50-100
 #define MITSUBISHI_ZERO_MARK  750 // 17*50-100
 // #define MITSUBISHI_DOUBLE_SPACE_USECS  800  // usually ssee 713 - not using ticks as get number wrapround
 // #define MITSUBISHI_RPT_LENGTH 45000
 
 
-#define RC5_T1		889
-#define RC5_RPT_LENGTH	46000
+#define RC5_T1    889
+#define RC5_RPT_LENGTH  46000
 
-#define RC6_HDR_MARK	2666
-#define RC6_HDR_SPACE	889
-#define RC6_T1		444
-#define RC6_RPT_LENGTH	46000
+#define RC6_HDR_MARK  2666
+#define RC6_HDR_SPACE 889
+#define RC6_T1    444
+#define RC6_RPT_LENGTH  46000
 
 #define SHARP_BIT_MARK 245
 #define SHARP_ONE_SPACE 1805
@@ -1065,9 +1065,9 @@ extern volatile irparams_t irparams;
 
 // defines for special carrier modulator timer
 #elif defined(IR_USE_TIMER_CMT)
-#define TIMER_RESET ({			\
-	uint8_t tmp = CMT_MSC;		\
-	CMT_CMD2 = 30;			\
+#define TIMER_RESET ({      \
+  uint8_t tmp = CMT_MSC;    \
+  CMT_CMD2 = 30;      \
 })
 #define TIMER_ENABLE_PWM     CORE_PIN5_CONFIG = PORT_PCR_MUX(2)|PORT_PCR_DSE|PORT_PCR_SRE
 #define TIMER_DISABLE_PWM    CORE_PIN5_CONFIG = PORT_PCR_MUX(1)|PORT_PCR_DSE|PORT_PCR_SRE
@@ -1083,30 +1083,30 @@ extern volatile irparams_t irparams;
 #else
 #define CMT_PPS_VAL 2
 #endif
-#define TIMER_CONFIG_KHZ(val) ({ 	\
-	SIM_SCGC4 |= SIM_SCGC4_CMT;	\
-	SIM_SOPT2 |= SIM_SOPT2_PTD7PAD;	\
-	CMT_PPS = CMT_PPS_VAL;		\
-	CMT_CGH1 = 2667 / val;		\
-	CMT_CGL1 = 5333 / val;		\
-	CMT_CMD1 = 0;			\
-	CMT_CMD2 = 30;			\
-	CMT_CMD3 = 0;			\
-	CMT_CMD4 = 0;			\
-	CMT_OC = 0x60;			\
-	CMT_MSC = 0x01;			\
+#define TIMER_CONFIG_KHZ(val) ({  \
+  SIM_SCGC4 |= SIM_SCGC4_CMT; \
+  SIM_SOPT2 |= SIM_SOPT2_PTD7PAD; \
+  CMT_PPS = CMT_PPS_VAL;    \
+  CMT_CGH1 = 2667 / val;    \
+  CMT_CGL1 = 5333 / val;    \
+  CMT_CMD1 = 0;     \
+  CMT_CMD2 = 30;      \
+  CMT_CMD3 = 0;     \
+  CMT_CMD4 = 0;     \
+  CMT_OC = 0x60;      \
+  CMT_MSC = 0x01;     \
 })
-#define TIMER_CONFIG_NORMAL() ({	\
-	SIM_SCGC4 |= SIM_SCGC4_CMT;	\
-	CMT_PPS = CMT_PPS_VAL;		\
-	CMT_CGH1 = 1;			\
-	CMT_CGL1 = 1;			\
-	CMT_CMD1 = 0;			\
-	CMT_CMD2 = 30;			\
-	CMT_CMD3 = 0;			\
-	CMT_CMD4 = 19;			\
-	CMT_OC = 0;			\
-	CMT_MSC = 0x03;			\
+#define TIMER_CONFIG_NORMAL() ({  \
+  SIM_SCGC4 |= SIM_SCGC4_CMT; \
+  CMT_PPS = CMT_PPS_VAL;    \
+  CMT_CGH1 = 1;     \
+  CMT_CGL1 = 1;     \
+  CMT_CMD1 = 0;     \
+  CMT_CMD2 = 30;      \
+  CMT_CMD3 = 0;     \
+  CMT_CMD4 = 19;      \
+  CMT_OC = 0;     \
+  CMT_MSC = 0x03;     \
 })
 #define TIMER_PWM_PIN        5
 
@@ -2298,12 +2298,12 @@ void IRsend::sendDISH(unsigned long data, int nbits) {
 
 
 /*----- Variables, Pins -----*/
-#define STEPS  32   // Number of steps per revolution of Internal shaft
-int  Steps2Take;  // 2048 = 1 Revolution
-int receiver = 12; // Signal Pin of IR receiver to Arduino Digital Pin 6
-bool state = LOW;  // Used to store motor state
+#define STEPS  32     // Number of steps per revolution of Internal shaft
+int  Steps2Take;      // 2048 = 1 Revolution
+int receiver = 12;    // Signal Pin of IR receiver to Arduino Digital Pin 6
+bool state = LOW;     // Used to store motor state
 bool direction = LOW; // Used to keep track of motor direction
-int speed = 300;   // Used to store speed
+int speed = 300;      // Used to store speed
 
 /*-----( Declare objects )-----*/
 // Setup of proper sequencing for Motor Driver Pins
@@ -2314,60 +2314,57 @@ IRrecv irrecv(receiver);    // create instance of 'irrecv'
 decode_results results;     // create instance of 'decode_results'
 
 void setup(){
-  irrecv.enableIRIn(); // Start the receiver
+  irrecv.enableIRIn();      // Start the receiver
   Serial.begin(9600);
   }
 
 void loop(){
-  if (irrecv.decode(&results)) {     // have we received an IR signal?
-
+  if (irrecv.decode(&results)) {      // have we received an IR signal?
     switch(results.value) {
-
-      case 0xFF02FD:         // Play Pause button pressed
-          state = !state;
-          break;
-      case 0xFFE01F:         // Channel Down Button Pressed
-          direction = LOW;
-          break;
-      case 0xFF906F:              // Channel up button pressed
-          direction = HIGH;
-          break;
-      case 0xFF629D:          // VOL+ button pressed
-        speed += 100;
-        if(speed > 500){
-            speed = 500;
+      case 0xFF02FD:                  // Play Pause button pressed
+        state = !state;                   // Turns on and off
+        break;
+      case 0xFFE01F:                  // Channel Down Button Pressed
+        direction = LOW;                  // Go Counter Clockwise
+        break;
+      case 0xFF906F:                  // Channel up button pressed
+        direction = HIGH;                 // Go Clockwise
+        break;
+      case 0xFF629D:                  // VOL+ button pressed
+        speed += 100;                     // Speed up
+        if(speed > 1000){
+          speed = 1000;
         }
         break;
-        case 0xFFA857:          // VOL- button pressed
-            speed -= 100;
-            if(speed < 100){
-                speed = 100;
-            }
-            break;
-        default:
-            break;
-      }
-    irrecv.resume(); // receive the next value
+      case 0xFFA857:                // VOL- button pressed
+        speed -= 100;                     // Slow down
+        if(speed < 100){
+            speed = 100;
+        }
+        break;
+      default:
+        break;
+    }
+    irrecv.resume();                // receive the next value
     Serial.println(results.value, HEX);
-}
-    Serial.println("Start Truman");
-    if(state){
-        small_stepper.setSpeed(speed);
-        if(direction){
-            Steps2Take = 100;
-        }
-        else{
-            Steps2Take = -100;
-        }
-        small_stepper.step(Steps2Take);
+    Serial.println(speed);
+  }
+  //Serial.println("Start Loop");
+  if(state){                        // If Stepper is on
+    small_stepper.setSpeed(speed);      // Set the Speed
+    if(direction){                      // If direction is HIGH
+      Steps2Take = 100;                     // Go Clockwise
     }
-    else{
-        digitalWrite(8, LOW);
-        digitalWrite(9, LOW);
-        digitalWrite(10, LOW);
-        digitalWrite(11, LOW);
+    else{                               // If direction is LOW
+      Steps2Take = -100;                    // Go Counterclockwise
     }
-    Serial.println("End Truman");
-
-
+    small_stepper.step(Steps2Take);     // Go in (Counter)Clockwise direction
+  }
+  else{                             // If Stepper is off
+      digitalWrite(8, LOW);             // Turn everything off
+      digitalWrite(9, LOW);
+      digitalWrite(10, LOW);
+      digitalWrite(11, LOW);
+  }
+  //Serial.println("End Loop");
 }/* --end main loop -- */
